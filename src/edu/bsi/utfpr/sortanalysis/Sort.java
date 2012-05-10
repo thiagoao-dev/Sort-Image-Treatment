@@ -1,10 +1,5 @@
 package edu.bsi.utfpr.sortanalysis;
 
-/**
- * @author Thiago Augustus de Oliveira
- * @version 1.0.0
- * @since 05-07-2012
- */
 public class Sort {
     
     /**
@@ -12,7 +7,7 @@ public class Sort {
      * @param vetor[]
      * @return int
      */
-    private static int bubbleSort(int[] vetor){
+    public static int bubbleSort(int[] vetor){
         // Declare attributes
         boolean houveTroca = true;
         int vetorSize = (int) (vetor.length-1)/2+1;
@@ -37,7 +32,7 @@ public class Sort {
      * @param vetor[]
      * @return int
      */
-    private static int selectionSort(int[] vetor){
+    public static int selectionSort(int[] vetor){
         // Declare attributes
         int vetorSize = (int) (vetor.length-1)/2+1;
         int index_min, aux;
@@ -64,7 +59,7 @@ public class Sort {
      * @param vetor[]
      * @return int
      */
-    private static int insertionSort(int[] vetor){
+    public static int insertionSort(int[] vetor){
         // Declare attributes
         int vetorSize = (int) (vetor.length-1)/2+1;
         // Sort Method

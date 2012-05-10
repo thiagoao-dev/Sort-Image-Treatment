@@ -1,11 +1,5 @@
 package edu.bsi.utfpr.sortanalysis;
 
-/**
- * @author Thiago Augustus de Oliveira
- * @version 1.0.0
- * @since 05-07-2012
- */
-
 import java.io.*;
 import javax.swing.JOptionPane;
 
@@ -32,6 +26,10 @@ public class ReadPGMImage {
         return(this.initConfig());
     }
     
+    /**
+     * Init all main configs
+     * @return boolean
+     */
     private boolean initConfig(){
         // Initiate the attributes
         this.imgH = 0;
@@ -84,6 +82,7 @@ public class ReadPGMImage {
         if(this.getNextLine().equals("P2")){
             // Read the next line that have de size of the image file
             try{
+                // Break the string where is space
                 String size[] = this.getNextLine().split(" ");
                 // Set some attributes with the sizes and number of colours of image file matrix
                 this.imgH = Integer.parseInt(size[0]);
@@ -191,5 +190,19 @@ public class ReadPGMImage {
      */
     public int getNumberOfColour(){
         return this.imgNumColor;
+    }
+    
+    /**
+     * Return the value of the matriz position
+     * @param int pLine
+     * @param int pColumn
+     * @return int Value
+     */
+    public int getValue(int pLine, int pColumn){
+        try{
+            return this.imgMatrix[pLine][pColumn];
+        }catch(Exception e){
+            return -1;
+        }
     }
 }

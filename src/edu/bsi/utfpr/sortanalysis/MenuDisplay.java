@@ -3,15 +3,16 @@ package edu.bsi.utfpr.sortanalysis;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
+
 /**
- *
- * @author augustus
+ * @author Thiago Augustus de Oliveira
+ * @version 1.0.0
+ * @since 05-07-2012
  */
+
 public class MenuDisplay extends javax.swing.JFrame {
     
     // Set the number of sub matrix avaliable
-    private int count = 0;
-    private String labels[] = {"3 x 3", "5 x 5", "7 x 7", "9 x 9", "13 x 13", "19 x 19", "25 x 25", "33 x 33", "49 x 49"};
     private FileInput input;
     private ReadPGMImage imgFile;
     private Core core;
@@ -155,7 +156,6 @@ public class MenuDisplay extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
                 .addComponent(titleMenuPanel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(selectionSortButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -175,7 +175,7 @@ public class MenuDisplay extends javax.swing.JFrame {
                 .addComponent(imageFile, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(statusLabel))
         );
 
@@ -216,16 +216,7 @@ public class MenuDisplay extends javax.swing.JFrame {
 
     private void matrizSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_matrizSizeActionPerformed
         // TODO add your handling code here:
-        // Increment the label counter
-        this.count++;
-        // Verify if the label counter is lower than labels size
-        if(this.count < this.labels.length){
-            this.matrizLabel.setText(this.labels[this.count]);
-        }else{
-            // Reset the label counter
-            this.count = 0;
-            this.matrizLabel.setText(this.labels[this.count]);
-        }
+        this.matrizLabel.setText(this.core.getNextSubMatrix());
     }//GEN-LAST:event_matrizSizeActionPerformed
 
     private void showGraphicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showGraphicActionPerformed
@@ -240,35 +231,28 @@ public class MenuDisplay extends javax.swing.JFrame {
         // TODO add your handling code here:
         // Set as not enable the start button
         this.startButton.setEnabled(false);
-        this.statusLabel.setText("Reading all parameters");
         // Verify if is any sort selected
         if(this.core.getAnySortTrue()){
             try{
                 // Reading the file and creating this matriz and header
-                this.statusLabel.setText("Reading the image file");
                 this.imgFile.setImage(this.input.getFilePath());
                 // Setting the core object and preparing the data
-                this.statusLabel.setText("Preparing the data to start the sort");
-                this.core.setImage(
-                    this.imgFile.getMatrix(), 
-                    this.imgFile.getNumberOfColour(), 
-                    this.imgFile.getMatrixLines(), 
-                    this.imgFile.getMatrixColumns(),
-                    this.count
-                );
-                
-                
-                
+                this.core.setImageFile(this.imgFile);
+                if(this.core.startSort()){
+                    // Reset the start button
+                    this.startButton.setEnabled(true);
+                }                
             }catch(Exception e){
                 JOptionPane.showMessageDialog(null, "File was not found");
+                // Reset the status label e start button
+                this.startButton.setEnabled(true);
             }
         }
         else{
             JOptionPane.showMessageDialog(null, "Select one or more sort");
+            // Reset the status label e start button
+            this.startButton.setEnabled(true);
         }
-        // Reset the status label e start button
-        this.statusLabel.setText("");
-        this.startButton.setEnabled(true);
         
     }//GEN-LAST:event_startActionPerformed
 
