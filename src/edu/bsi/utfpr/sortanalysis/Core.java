@@ -3,16 +3,24 @@ package edu.bsi.utfpr.sortanalysis;
 public class Core {
     
     // Set all attributes
+    private ReadPGMImage file; // Save the object file that is selected
+    private ResultFileSort txtFile; // Save all sorts results
+    // Define what sorts will be analysed
     private boolean   selectionSort;
     private boolean   bubbleSort;
     private boolean   insertionSort;
     private boolean   quickSort;
     private boolean   showGraphic;
+    // Define the size of the sub matriz to analyse
     private int[]     subMatrizSize = {3, 5, 7, 9, 13, 19, 25, 33, 49}; // Define all submatriz size
     private int       subMatrizCounter; // Define a submatriz size counter
-    private ReadPGMImage file;
+    // Declare new sub
     private int[][]   newSubMatriz;
-    private int       borderValue;
+    private int       borderValue; // Save the color os the img border
+    // Save time millis from the sort where is executing
+    private long startTime;
+    private long endTime;
+    private long diffTime;
     
     /**
      * Init the main attributes
@@ -32,13 +40,84 @@ public class Core {
      * @return boolean
      */
     public boolean startSort(){
-        // Get a new ordered matriz
-        this.newOrderedMatriz();
-        this.createNewImage(this.newSubMatriz);
+        // Verify what sort time is selected
+        if(this.selectionSort){
+            // Create a new file text to save the results
+            this.txtFile    = new ResultFileSort("selectionSort");
+            this.txtFile.addValue("SELECTION SORT");
+            this.txtFile.newLine();
+            // Get the time in milliseconds
+            this.startTime  = System.currentTimeMillis();
+            // Start to order the matriz
+            this.newOrderedMatriz(1);
+            // Ordered time taked
+            this.txtFile.addValue(String.format("Order Time: %02d:%03d sec/mil", (System.currentTimeMillis() - this.startTime)/1000, (System.currentTimeMillis() - this.startTime)%1000));
+            this.txtFile.newLine();
+            // Create a new image with the ordered matriz
+            this.createNewImage(this.newSubMatriz);
+            // Ordered time taked
+            this.txtFile.addValue(String.format("Total Time: %02d:%03d sec/mil", (System.currentTimeMillis() - this.startTime)/1000, (System.currentTimeMillis() - this.startTime)%1000));
+            // Close the text file
+            this.txtFile.closeFile();
+        }
+        if(this.bubbleSort){
+            this.txtFile = new ResultFileSort("bubbleSort");
+            this.txtFile.addValue("BUBBLE SORT");
+            this.txtFile.newLine();
+            // Get the time in milliseconds
+            this.startTime  = System.currentTimeMillis();
+            // Start to order the matriz
+            this.newOrderedMatriz(2);
+            // Ordered time taked
+            this.txtFile.addValue(String.format("Order Time: %02d:%03d sec/mil", (System.currentTimeMillis() - this.startTime)/1000, (System.currentTimeMillis() - this.startTime)%1000));
+            this.txtFile.newLine();
+            // Create a new image with the ordered matriz
+            this.createNewImage(this.newSubMatriz);
+            // Ordered time taked
+            this.txtFile.addValue(String.format("Total Time: %02d:%03d sec/mil", (System.currentTimeMillis() - this.startTime)/1000, (System.currentTimeMillis() - this.startTime)%1000));
+            // Close the text file
+            this.txtFile.closeFile();
+        }
+        if(this.insertionSort){
+            this.txtFile = new ResultFileSort("insertionSort");
+            this.txtFile.addValue("INSERTION SORT");
+            this.txtFile.newLine();
+            // Get the time in milliseconds
+            this.startTime  = System.currentTimeMillis();
+            // Start to order the matriz
+            this.newOrderedMatriz(3);
+            // Ordered time taked
+            this.txtFile.addValue(String.format("Order Time: %02d:%03d sec/mil", (System.currentTimeMillis() - this.startTime)/1000, (System.currentTimeMillis() - this.startTime)%1000));
+            this.txtFile.newLine();
+            // Create a new image with the ordered matriz
+            this.createNewImage(this.newSubMatriz);
+            // Ordered time taked
+            this.txtFile.addValue(String.format("Total Time: %02d:%03d sec/mil", (System.currentTimeMillis() - this.startTime)/1000, (System.currentTimeMillis() - this.startTime)%1000));
+            // Close the text file
+            this.txtFile.closeFile();
+        }
+        if(this.quickSort){
+            this.txtFile = new ResultFileSort("quickSort");
+            this.txtFile.addValue("QUICK SORT");
+            this.txtFile.newLine();
+            // Get the time in milliseconds
+            this.startTime  = System.currentTimeMillis();
+            // Start to order the matriz
+            this.newOrderedMatriz(4);
+            // Ordered time taked
+            this.txtFile.addValue(String.format("Order Time: %02d:%03d sec/mil", (System.currentTimeMillis() - this.startTime)/1000, (System.currentTimeMillis() - this.startTime)%1000));
+            this.txtFile.newLine();
+            // Create a new image with the ordered matriz
+            this.createNewImage(this.newSubMatriz);
+            // Ordered time taked
+            this.txtFile.addValue(String.format("Total Time: %02d:%03d sec/mil", (System.currentTimeMillis() - this.startTime)/1000, (System.currentTimeMillis() - this.startTime)%1000));
+            // Close the text file
+            this.txtFile.closeFile();
+        }
         return true;
     }
     
-    private void newOrderedMatriz(){
+    private void newOrderedMatriz(int sort){
         // Add some temp attributes
         int start           = (int) Math.floor(this.subMatrizSize[this.subMatrizCounter] / 2); // Define the start point to read in the image file matriz
         int end             = this.file.getMatrixLines() - start; // Define the last point to read in the image file matriz
@@ -46,15 +125,27 @@ public class Core {
         
         // Create the new matriz
         for(int line = 0; line < this.newSubMatriz.length; line++){
+            long tempTime = System.currentTimeMillis();
             for(int column = 0; column < this.newSubMatriz[line].length; column++){
                 // Fill all new matrix borders with an value
                 if(line < start || line >= end || column < start || column >= end){
                     this.newSubMatriz[line][column] = this.borderValue;
                 }
                 else{
-                    this.newSubMatriz[line][column] = Sort.bubbleSort(getSubArray(line, column));
+                    switch(sort){
+                        case 1: this.newSubMatriz[line][column] = Sort.selectionSort(getSubArray(line, column));
+                        break;
+                        case 2: this.newSubMatriz[line][column] = Sort.bubbleSort(getSubArray(line, column));
+                        break;
+                        case 3: this.newSubMatriz[line][column] = Sort.insertionSort(getSubArray(line, column));
+                        break;
+                        case 4: 
+                        break;
+                    }
                 }
             }
+            this.txtFile.addValue(String.format("Line[%03d]: %02d:%03d sec/mil", line, (System.currentTimeMillis() - tempTime)/1000, (System.currentTimeMillis() - tempTime)%1000));
+            this.txtFile.newLine();
         }       
     }
     
@@ -64,7 +155,7 @@ public class Core {
         for(int line = 0; line < this.newSubMatriz.length; line++){
             for(int column = 0; column < this.newSubMatriz[line].length; column++){
                 // Fill all new matrix borders with an value
-                newFile.addValue(String.valueOf(this.newSubMatriz[column][line])+" ");
+                newFile.addValue(String.valueOf(this.newSubMatriz[line][column])+" ");
             }
             newFile.newLine();
         }

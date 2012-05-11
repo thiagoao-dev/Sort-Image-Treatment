@@ -130,7 +130,7 @@ public class ReadPGMImage {
                             tempCCount = 0;
                         }
                         // Add the value of the temparray in the image matrix
-                        this.imgMatrix[tempLCount][tempCCount] = Integer.parseInt(tempArray[i]);
+                        this.imgMatrix[tempCCount][tempLCount] = Integer.parseInt(tempArray[i]);
                         // Increment the column counter
                         tempCCount++;
                     }

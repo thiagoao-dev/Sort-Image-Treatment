@@ -52,7 +52,6 @@
                   <Component id="quickSortButton" alignment="0" min="-2" pref="194" max="-2" attributes="0"/>
                   <Component id="matrizSizeButton" alignment="0" min="-2" pref="194" max="-2" attributes="0"/>
                   <Component id="matrizLabel" alignment="0" min="-2" pref="194" max="-2" attributes="0"/>
-                  <Component id="showGraphicButton" alignment="0" min="-2" pref="194" max="-2" attributes="0"/>
                   <Component id="imageFile" alignment="0" min="-2" pref="194" max="-2" attributes="0"/>
                   <Component id="startButton" alignment="0" min="-2" pref="194" max="-2" attributes="0"/>
                   <Component id="titleMenuPanel" min="-2" pref="194" max="-2" attributes="0"/>
@@ -77,8 +76,6 @@
               <Component id="matrizSizeButton" min="-2" pref="36" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="matrizLabel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="showGraphicButton" min="-2" pref="36" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="imageFile" min="-2" pref="36" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -138,14 +135,6 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="matrizSizeActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="showGraphicButton">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Show Graphic"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="showGraphicActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="startButton">

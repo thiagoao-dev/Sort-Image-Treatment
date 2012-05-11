@@ -75,4 +75,8 @@ public class Sort {
         // Return the middle number of the vetor
         return vetor[vetorSize];
     }
+    
+    public static void quickSort(int vetor[], int pStart, int pEnd) {
+    
+    }
 }

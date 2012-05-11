@@ -67,6 +67,7 @@ public class PGMCreator {
     public void addValue(String value){
         try {
             this.bWriter.write(value);
+            this.bWriter.flush();
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "The new file cannot be writed");
         }

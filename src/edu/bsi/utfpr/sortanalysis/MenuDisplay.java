@@ -44,7 +44,6 @@ public class MenuDisplay extends javax.swing.JFrame {
         bubbleSortButton = new javax.swing.JButton();
         insertionSortButton = new javax.swing.JButton();
         matrizSizeButton = new javax.swing.JButton();
-        showGraphicButton = new javax.swing.JButton();
         startButton = new javax.swing.JButton();
         matrizLabel = new javax.swing.JLabel();
         imageFile = new javax.swing.JButton();
@@ -105,13 +104,6 @@ public class MenuDisplay extends javax.swing.JFrame {
             }
         });
 
-        showGraphicButton.setText("Show Graphic");
-        showGraphicButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                showGraphicActionPerformed(evt);
-            }
-        });
-
         startButton.setText("Start Analysis");
         startButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,7 +139,6 @@ public class MenuDisplay extends javax.swing.JFrame {
                     .addComponent(quickSortButton, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(matrizSizeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(matrizLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(showGraphicButton, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(imageFile, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(titleMenuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -169,8 +160,6 @@ public class MenuDisplay extends javax.swing.JFrame {
                 .addComponent(matrizSizeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(matrizLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(showGraphicButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(imageFile, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -218,14 +207,6 @@ public class MenuDisplay extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.matrizLabel.setText(this.core.getNextSubMatrix());
     }//GEN-LAST:event_matrizSizeActionPerformed
-
-    private void showGraphicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showGraphicActionPerformed
-        // TODO add your handling code here:
-        if(this.core.setShowGraphic())
-            this.showGraphicButton.setBackground(Color.GREEN);
-        else
-            this.showGraphicButton.setBackground(Color.LIGHT_GRAY);
-    }//GEN-LAST:event_showGraphicActionPerformed
 
     private void startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startActionPerformed
         // TODO add your handling code here:
@@ -306,7 +287,6 @@ public class MenuDisplay extends javax.swing.JFrame {
     private javax.swing.JButton matrizSizeButton;
     private javax.swing.JButton quickSortButton;
     private javax.swing.JButton selectionSortButton;
-    private javax.swing.JButton showGraphicButton;
     private javax.swing.JButton startButton;
     private javax.swing.JLabel statusLabel;
     private javax.swing.JLabel titleMenuPanel;
